@@ -41,14 +41,14 @@ app.post('/add',(req,res)=>{
 });
 app.post('/sub',(req,res)=>{
     const {num1,num2}=req.body;
-    if(typeof num1==='string' || typeof num2==='string'){
-        return res.status(400).json({
-            status:"error",
-            message:"invalid data types"
-        })
-    }
+    if (typeof num1 === 'string' || typeof num2 === 'string') {
+		return res.json({
+			status: 'error',
+			message: 'Invalid data types',
+		});
+	}
     if(typeof num1==='number' && typeof num2==='number'){
-        if(num1<1000000 || num2<1000000 ){
+        if(num1<1000000 || num2<1000000 || (num1-num2)<1000000 ){
             return res.status(400).json({
                 status:`error`,
                 message:`Underflow`
