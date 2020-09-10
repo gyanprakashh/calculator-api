@@ -20,7 +20,7 @@ app.post('/add',(req,res)=>{
     if(typeof num1==='string' || typeof num2==='string'){
         return res.status(400).json({
             status:"error",
-            message:"invalid data types"
+            message:"Invalid data types"
         })
     }
     if(typeof num1==='number' && typeof num2==='number'){
@@ -92,7 +92,7 @@ app.post('/divide',(req,res)=>{
     if(typeof num1==='string' || typeof num2==='string'){
         return res.status(400).json({
             status:"error",
-            message:"invalid data types"
+            message:"Invalid data types"
         })
     }
     if(typeof num1==='number' && typeof num2==='number'){
@@ -105,7 +105,7 @@ app.post('/divide',(req,res)=>{
             const result = num1 / num2;
             return res.json({
                 status:`success`,
-                message:`the sum of given two number is`,
+                message:`The division of given numbers`,
                 result
             })
         }
