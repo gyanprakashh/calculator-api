@@ -24,8 +24,8 @@ app.post('/add',(req,res)=>{
         })
     }
     if(typeof num1==='number' && typeof num2==='number'){
-        if(num1>Number.MAX_VALUE || num2>Number.MAX_VALUE ){
-            return res.status(400).json({
+        if(num1>10000000 || num2>10000000 ){
+            return res.json({
                 status:`error`,
                 message:`Overflow`
             })
@@ -48,7 +48,7 @@ app.post('/sub',(req,res)=>{
         })
     }
     if(typeof num1==='number' && typeof num2==='number'){
-        if(num1<Number.MIN_VALUE || num2<MIN_VALUE ){
+        if(num1<1000000 || num2<1000000 ){
             return res.status(400).json({
                 status:`error`,
                 message:`Underflow`
@@ -72,7 +72,7 @@ app.post('/multiply',(req,res)=>{
         })
     }
     if(typeof num1==='number' && typeof num2==='number'){
-        if(num1>Number.MAX_VALUE || num2>Number.MAX_VALUE ){
+        if(num1>1000000 || num2>1000000 ){
             return res.status(400).json({
                 status:`error`,
                 message:`Overflow`
