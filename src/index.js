@@ -87,7 +87,7 @@ app.post('/multiply',(req,res)=>{
         }
     }
 });
-app.post('/division',(req,res)=>{
+app.post('/divide',(req,res)=>{
     const {num1,num2}=req.body;
     if(typeof num1==='string' || typeof num2==='string'){
         return res.status(400).json({
