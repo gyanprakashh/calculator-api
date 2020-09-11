@@ -23,15 +23,15 @@ app.post('/add',(req,res)=>{
             message:"Invalid data types"
         })
     }
-    if(typeof num1==='number' && typeof num2==='number'){
-        if(num1>10000000 || num2>10000000 ||(num1+num2)>1000000 ){
+
+        if(num1>1000000 || num2>1000000 ||(num1+num2)>1000000 ){
             return res.json({
                 status:`error`,
                 message:`Overflow`
             })
         
         }
-        if(num1<-10000000 || num2<-10000000 ||(num1+num2)<-1000000 ){
+        if(num1<-1000000 || num2<-1000000 ||(num1+num2)<-1000000 ){
             return res.json({
                 status:`error`,
                 message:`Underflow`
@@ -45,7 +45,7 @@ app.post('/add',(req,res)=>{
                 sum:resa
             })
         }
-    }
+    
 });
 app.post('/sub',(req,res)=>{
     const {num1,num2}=req.body;
@@ -55,13 +55,18 @@ app.post('/sub',(req,res)=>{
 			message: 'Invalid data types',
 		});
 	}
-    if(typeof num1==='number' && typeof num2==='number'){
         if(num1<-1000000 || num2<-1000000 || (num1-num2)<-1000000 ){
-            return res.status(400).json({
+            return res.json({
                 status:`error`,
                 message:`Underflow`
             })
-        }else{
+        } if(num1>1000000 || num2>1000000 || (num1-num2)>1000000 ){
+            return res.status(400).json({
+                status:`error`,
+                message:`Overflow`
+            })
+        }
+        else{
             let difference = num1 - num2;
             return res.json({
                 status:`success`,
@@ -69,14 +74,14 @@ app.post('/sub',(req,res)=>{
                 difference
             })
         }
-    }
+    
 });
 app.post('/multiply',(req,res)=>{
     const {num1,num2}=req.body;
     if(typeof num1==='string' || typeof num2==='string'){
-        return res.status(400).json({
+        return res.json({
             status:"error",
-            message:"invalid data types"
+            message:"Invalid data types"
         })
     }
     if(typeof num1==='number' && typeof num2==='number'){
@@ -86,12 +91,13 @@ app.post('/multiply',(req,res)=>{
                 message:`Overflow`
             })
         }
-       else if(num1<-1000000 || num2<-1000000 ||(num1*num2)<-1000000 ){
+        if(num1<-1000000 || num2<-1000000 ||(num1*num2)<-1000000 ){
             return res.status(400).json({
                 status:`error`,
                 message:`Underflow`
             })
-        }else{
+        }
+        else{
             const result = num1 * num2;
             return res.json({
                 status:`success`,
@@ -104,12 +110,11 @@ app.post('/multiply',(req,res)=>{
 app.post('/divide',(req,res)=>{
     const {num1,num2}=req.body;
     if(typeof num1==='string' || typeof num2==='string'){
-        return res.status(400).json({
+        return res.json({
             status:"error",
             message:"Invalid data types"
         })
     }
-    if(typeof num1==='number' && typeof num2==='number'){
         if( num2==0 ){
             return res.json({
                 status:`error`,
@@ -129,7 +134,7 @@ app.post('/divide',(req,res)=>{
                 result
             })
         }
-    }
+    
 });
 
 
