@@ -29,7 +29,15 @@ app.post('/add',(req,res)=>{
                 status:`error`,
                 message:`Overflow`
             })
-        }else{
+        
+        }
+        if(num1<-10000000 || num2<-10000000 ||(num1+num2)<-1000000 ){
+            return res.json({
+                status:`error`,
+                message:`Underflow`
+            })
+        }
+        else{
             const resa=num1+num2;
             return res.json({
                 status:`success`,
@@ -48,7 +56,7 @@ app.post('/sub',(req,res)=>{
 		});
 	}
     if(typeof num1==='number' && typeof num2==='number'){
-        if(num1<1000000 || num2<1000000 || (num1-num2)<1000000 ){
+        if(num1<-1000000 || num2<-1000000 || (num1-num2)<-1000000 ){
             return res.status(400).json({
                 status:`error`,
                 message:`Underflow`
@@ -77,6 +85,12 @@ app.post('/multiply',(req,res)=>{
                 status:`error`,
                 message:`Overflow`
             })
+        }
+       else if(num1<-1000000 || num2<-1000000 ||(num1*num2)<-1000000 ){
+            return res.status(400).json({
+                status:`error`,
+                message:`Underflow`
+            })
         }else{
             const result = num1 * num2;
             return res.json({
@@ -97,12 +111,18 @@ app.post('/divide',(req,res)=>{
     }
     if(typeof num1==='number' && typeof num2==='number'){
         if( num2==0 ){
-            return res.status(400).json({
+            return res.json({
                 status:`error`,
                 message:`Cannot divide by zero`
             })
         }else{
             const result = num1 / num2;
+            if((num1/num2)>1000000 ){
+                return res.status(400).json({
+                    status:`error`,
+                    message:`Overflow`
+                })
+            }
             return res.json({
                 status:`success`,
                 message:`The division of given numbers`,
