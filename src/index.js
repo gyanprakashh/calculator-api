@@ -18,7 +18,7 @@ app.get('/',(req,res)=>{
 app.post('/add',(req,res)=>{
     const {num1,num2}=req.body;
     if(typeof num1==='string' || typeof num2==='string'){
-        return res.status(400).json({
+        return res.json({
             status:"error",
             message:"Invalid data types"
         })
@@ -84,9 +84,8 @@ app.post('/multiply',(req,res)=>{
             message:"Invalid data types"
         })
     }
-    if(typeof num1==='number' && typeof num2==='number'){
         if(num1>1000000 || num2>1000000 ||(num1*num2)>1000000 ){
-            return res.status(400).json({
+            return res.json({
                 status:`error`,
                 message:`Overflow`
             })
@@ -105,7 +104,7 @@ app.post('/multiply',(req,res)=>{
                 result
             })
         }
-    }
+    
 });
 app.post('/divide',(req,res)=>{
     const {num1,num2}=req.body;
